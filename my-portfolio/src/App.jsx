@@ -114,7 +114,12 @@ function VideoCard({ video, accent, index, onClick }) {
         <div style={{ position: "absolute", top: "12px", left: "12px", fontFamily: "'IBM Plex Mono', monospace", fontSize: "8px", fontWeight: 500, background: "rgba(255,255,255,0.06)", padding: "3px 8px", borderRadius: "6px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.5px" }}>COMING SOON</div>
       )}
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 14px 16px", background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)" }}>
-        <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "12px", fontWeight: 500, color: hovered ? "#fff" : "rgba(255,255,255,0.7)", lineHeight: 1.3, transition: "color 0.3s ease" }}>{video.title}</div>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "8px" }}>
+          <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "12px", fontWeight: 500, color: hovered ? "#fff" : "rgba(255,255,255,0.7)", lineHeight: 1.3, transition: "color 0.3s ease", flex: 1 }}>{video.title}</div>
+          {video.duration && (
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "9px", fontWeight: 500, color: "rgba(255,255,255,0.45)", letterSpacing: "0.5px", flexShrink: 0, paddingBottom: "1px" }}>{video.duration}</div>
+          )}
+        </div>
       </div>
 
     </div>
@@ -266,7 +271,7 @@ function VideoModal({ video, onClose }) {
         border: "1px solid rgba(255,255,255,0.06)",
       }}>
         <iframe
-          src={`https://player.vimeo.com/video/${video.vimeoId}?h=${video.vimeoHash || ""}&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&title=0&byline=0&portrait=0`}
+          src={`https://player.vimeo.com/video/${video.vimeoId}?h=${video.vimeoHash || ""}&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0&loop=1&title=0&byline=0&portrait=0`}
           style={{ width: "100%", height: "100%", border: "none" }}
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -293,7 +298,25 @@ export default function Portfolio() {
     setTimeout(() => setLoaded(true), 100);
     const handleMouse = (e) => setMousePos({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", handleMouse);
-    return () => window.removeEventListener("mousemove", handleMouse);
+
+    // Scroll-based active section tracking
+    const sections = ["home", "work", "about", "contact"];
+    const observers = [];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.3 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouse);
+      observers.forEach((obs) => obs.disconnect());
+    };
   }, []);
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setActiveSection(id); };
