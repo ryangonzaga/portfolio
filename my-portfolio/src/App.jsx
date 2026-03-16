@@ -178,6 +178,53 @@ function ContactLink({ contact, index }) {
   );
 }
 
+function TimelineItem({ item, index }) {
+  const [ref, visible] = useInView(0.1);
+  return (
+    <div ref={ref} style={{
+      position: "relative", marginBottom: "48px",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateX(0)" : "translateX(-20px)",
+      transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${index * 0.12}s`,
+    }}>
+      <div style={{
+        position: "absolute", left: "-37px", top: "6px",
+        width: "12px", height: "12px", borderRadius: "50%",
+        background: "#0a0a0a",
+        border: `2px solid ${item.accent}`,
+        boxShadow: visible ? `0 0 12px ${item.accent}40` : "none",
+        transition: "box-shadow 0.6s ease",
+      }} />
+      <div style={{
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", fontWeight: 400,
+        color: item.accent, letterSpacing: "1px", marginBottom: "6px", opacity: 0.85,
+      }}>{item.period}</div>
+      <div style={{
+        fontFamily: "'Syne', sans-serif", fontSize: "20px", fontWeight: 700,
+        color: "#fff", lineHeight: 1.2, marginBottom: "4px",
+      }}>{item.role}</div>
+      <div style={{
+        fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "13px", fontWeight: 400,
+        color: "rgba(255,255,255,0.35)", marginBottom: "12px",
+      }}>{item.company}</div>
+      <p style={{
+        fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.7,
+        color: "rgba(255,255,255,0.4)", fontWeight: 300, maxWidth: "520px", marginBottom: "14px",
+      }}>{item.description}</p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+        {item.skills.map((skill, j) => (
+          <span key={j} style={{
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "9px", fontWeight: 400,
+            letterSpacing: "0.8px", padding: "5px 12px", borderRadius: "100px",
+            border: `1px solid ${item.accent}20`, color: `${item.accent}aa`,
+            background: `${item.accent}08`,
+          }}>{skill}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function VideoModal({ video, onClose }) {
   useEffect(() => {
     const handleKey = (e) => { if (e.key === "Escape") onClose(); };
@@ -451,61 +498,9 @@ export default function Portfolio() {
                   description: "Managed data systems and client communications. Developed process improvements and cross-functional workflows.",
                   skills: ["Data Management", "Client Relations", "Process Optimization"],
                 },
-              ].map((item, i) => {
-                const [ref, visible] = useInView(0.1);
-                return (
-                  <div key={i} ref={ref} style={{
-                    position: "relative", marginBottom: "48px",
-                    opacity: visible ? 1 : 0,
-                    transform: visible ? "translateX(0)" : "translateX(-20px)",
-                    transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${i * 0.12}s`,
-                  }}>
-                    {/* Dot on timeline */}
-                    <div style={{
-                      position: "absolute", left: "-37px", top: "6px",
-                      width: "12px", height: "12px", borderRadius: "50%",
-                      background: "#0a0a0a",
-                      border: `2px solid ${item.accent}`,
-                      boxShadow: visible ? `0 0 12px ${item.accent}40` : "none",
-                      transition: "box-shadow 0.6s ease",
-                    }} />
-
-                    {/* Period */}
-                    <div style={{
-                      fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", fontWeight: 400,
-                      color: item.accent, letterSpacing: "1px", marginBottom: "6px", opacity: 0.85,
-                    }}>{item.period}</div>
-
-                    {/* Role & Company */}
-                    <div style={{
-                      fontFamily: "'Syne', sans-serif", fontSize: "20px", fontWeight: 700,
-                      color: "#fff", lineHeight: 1.2, marginBottom: "4px",
-                    }}>{item.role}</div>
-                    <div style={{
-                      fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "13px", fontWeight: 400,
-                      color: "rgba(255,255,255,0.35)", marginBottom: "12px",
-                    }}>{item.company}</div>
-
-                    {/* Description */}
-                    <p style={{
-                      fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.7,
-                      color: "rgba(255,255,255,0.4)", fontWeight: 300, maxWidth: "520px", marginBottom: "14px",
-                    }}>{item.description}</p>
-
-                    {/* Skill tags */}
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                      {item.skills.map((skill, j) => (
-                        <span key={j} style={{
-                          fontFamily: "'IBM Plex Mono', monospace", fontSize: "9px", fontWeight: 400,
-                          letterSpacing: "0.8px", padding: "5px 12px", borderRadius: "100px",
-                          border: `1px solid ${item.accent}20`, color: `${item.accent}aa`,
-                          background: `${item.accent}08`,
-                        }}>{skill}</span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+              ].map((item, i) => (
+                <TimelineItem key={i} item={item} index={i} />
+              ))}
             </div>
           </div>
         </div>
