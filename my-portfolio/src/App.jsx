@@ -376,7 +376,7 @@ export default function Portfolio() {
         ].map((s, i) => (
           <div key={i} style={{ position: "absolute", width: s.w, height: s.h, borderRadius: s.radius, background: s.bg, border: `1px solid ${s.border}`, top: s.top, right: s.right, bottom: s.bottom, left: s.left, animation: `drift 14s ease-in-out ${s.delay} infinite`, pointerEvents: "none" }} />
         ))}
-        <div style={{ position: "relative", zIndex: 1, maxWidth: "880px" }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "100%" }}>
           <div style={{ overflow: "hidden", marginBottom: "8px" }}>
             <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "12px", fontWeight: 400, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "flex", alignItems: "center", gap: "12px", transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#E8FF47", display: "inline-block", animation: "breathe 3s ease infinite" }} />
@@ -385,6 +385,7 @@ export default function Portfolio() {
           </div>
           <div style={{ overflow: "hidden" }}><h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(56px, 11vw, 130px)", fontWeight: 800, lineHeight: 0.92, letterSpacing: "-2px", color: "#fff", transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 1s cubic-bezier(0.22,1,0.36,1) 0.4s" }}>Ryan</h1></div>
           <div style={{ overflow: "hidden" }}><h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(56px, 11vw, 130px)", fontWeight: 800, lineHeight: 0.92, letterSpacing: "-2px", color: "transparent", WebkitTextStroke: "1.5px rgba(255,255,255,0.2)", transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 1s cubic-bezier(0.22,1,0.36,1) 0.55s" }}>Gonzaga</h1></div>
+          <div style={{ maxWidth: "880px" }}>
           <div style={{ overflow: "hidden", marginTop: "32px", maxWidth: "440px" }}>
             <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "15px", lineHeight: 1.75, color: "rgba(255,255,255,0.4)", fontWeight: 300, transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.8s" }}>
               Full-stack creative video editor based in Los Angeles. Driving engagement & revenue @ Modern Gents through{" "}<span style={{ whiteSpace: "nowrap" }}>high-performance</span> paid media, aesthetic scroll-stopping organic content, and AI-driven narratives.
@@ -400,6 +401,7 @@ export default function Portfolio() {
               onMouseLeave={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.12)"; e.target.style.color = "rgba(255,255,255,0.6)"; }}
             >Contact</button>
           </div>
+        </div>
         </div>
         <div style={{ position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", opacity: loaded ? 0.3 : 0, transition: "opacity 1.2s ease 1.6s" }}>
           <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "9px", letterSpacing: "3px", textTransform: "uppercase" }}>Scroll</span>
