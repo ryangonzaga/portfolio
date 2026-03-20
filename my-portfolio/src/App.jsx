@@ -56,7 +56,8 @@ const CATEGORIES = [
         thumbnail: "",
         duration: "00:23",
         thumbnailImg: nsbCydiaTour,
-      
+      },
+      {
         title: "2.9M views - Valorant Stereo Love Edit",
         tiktokId: "7150907108328803626",
         thumbnail: "",
