@@ -420,7 +420,7 @@ export default function Portfolio() {
           <div style={{ maxWidth: "880px" }}>
           <div style={{ overflow: "hidden", marginTop: "32px", maxWidth: "440px" }}>
             <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "15px", lineHeight: 1.75, color: "rgba(255,255,255,0.4)", fontWeight: 300, transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.8s" }}>
-              Full-stack creative video editor based in Los Angeles. Driving engagement & revenue @ Modern Gents through{" "}<span style={{ whiteSpace: "nowrap" }}>high-performance</span> paid media, aesthetic scroll-stopping organic content, and AI-driven narratives.
+              Full-stack creative video editor based in Los Angeles. Driving engagement & revenue @ Modern Gents
             </p>
           </div>
           <div style={{ marginTop: "40px", display: "flex", gap: "16px", alignItems: "center", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease 1.1s" }}>
