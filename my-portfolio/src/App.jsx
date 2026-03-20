@@ -71,7 +71,6 @@ const CATEGORIES = [
 const CONTACTS = [
   { name: "LinkedIn", detail: "/in/victor-ryan-gonzaga", url: "https://www.linkedin.com/in/victor-ryan-gonzaga/", icon: "in" },
   { name: "Email", detail: "ryan14gonzaga@gmail.com", url: "mailto:ryan14gonzaga@gmail.com", icon: "✉" },
-  { name: "Phone", detail: "(626) 644-1606", url: "tel:6266441606", icon: "☏" },
 ];
 
 const SKILLS = [
