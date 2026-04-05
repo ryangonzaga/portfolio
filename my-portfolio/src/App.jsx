@@ -60,6 +60,13 @@ const CATEGORIES = [
         thumbnailImg: nsbCydiaTour,
       },
       {
+        title: '3.9M views - Oliver Moy tries "The Button"',
+        instagramId: "C8SkK7cOmkl",
+        thumbnail: "",
+        duration: "00:24",
+        thumbnailImg: oliverMoy,
+      },
+      {
         title: "2.9M views - Valorant Stereo Love Edit",
         tiktokId: "7150907108328803626",
         thumbnail: "",
@@ -72,13 +79,6 @@ const CATEGORIES = [
         thumbnail: "",
         duration: "00:12",
         thumbnailImg: valorantTrend,
-      },
-      {
-        title: '3.9M views - Oliver Moy tries "The Button"',
-        instagramId: "C8SkK7cOmkl",
-        thumbnail: "",
-        duration: "00:24",
-        thumbnailImg: oliverMoy,
       },
     ],
   },
