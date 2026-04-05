@@ -70,7 +70,7 @@ const CATEGORIES = [
         title: "2M views - Valorant Trend",
         tiktokId: "6970039631186316550",
         thumbnail: "",
-        duration: "",
+        duration: "00:12",
         thumbnailImg: valorantTrend,
       },
       {
