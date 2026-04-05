@@ -125,7 +125,7 @@ function VideoCard({ video, accent, index, onClick }) {
       onClick={() => { if (hasVideo && onClick) onClick(video); }}
       style={{
         flex: "0 0 auto", width: "180px", height: "320px", borderRadius: "16px",
-        overflow: "hidden", cursor: hasVideo ? "pointer" : "default", position: "relative", background: "#111",
+        overflow: "hidden", cursor: hasVideo ? "pointer" : "default", position: "relative", background: "#1e1e1e",
         border: `1px solid ${hovered ? `${accent}60` : "rgba(255,255,255,0.04)"}`,
         transition: "all 0.45s cubic-bezier(0.22,1,0.36,1)",
         transform: hovered ? "translateY(-6px) scale(1.03)" : "translateY(0) scale(1)",
@@ -138,7 +138,7 @@ function VideoCard({ video, accent, index, onClick }) {
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -60%)", fontSize: "48px", filter: hovered ? "none" : "grayscale(0.5)", transition: "filter 0.4s ease" }}>{video.thumbnail}</div>
       )}
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: `translate(-50%, -50%) scale(${hovered ? 1 : 0.7})`, opacity: hovered ? 1 : 0, transition: "all 0.35s cubic-bezier(0.22,1,0.36,1)", width: "44px", height: "44px", borderRadius: "50%", background: hasVideo ? `${accent}dd` : "rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: hasVideo ? `0 4px 20px ${accent}40` : "none" }}>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill={hasVideo ? "#0a0a0a" : "rgba(255,255,255,0.3)"} /></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill={hasVideo ? "#181818" : "rgba(255,255,255,0.3)"} /></svg>
       </div>
       {!hasVideo && (
         <div style={{ position: "absolute", top: "12px", left: "12px", fontFamily: "'IBM Plex Mono', monospace", fontSize: "8px", fontWeight: 500, background: "rgba(255,255,255,0.06)", padding: "3px 8px", borderRadius: "6px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.5px" }}>COMING SOON</div>
@@ -185,8 +185,8 @@ function CategoryCarousel({ category, categoryIndex, onVideoClick }) {
         </div>
       </div>
       <div style={{ position: "relative" }}>
-        {canScrollLeft && <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "60px", background: "linear-gradient(to right, #0a0a0a, transparent)", zIndex: 2, pointerEvents: "none" }} />}
-        {canScrollRight && <div style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: "60px", background: "linear-gradient(to left, #0a0a0a, transparent)", zIndex: 2, pointerEvents: "none" }} />}
+        {canScrollLeft && <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "60px", background: "linear-gradient(to right, #181818, transparent)", zIndex: 2, pointerEvents: "none" }} />}
+        {canScrollRight && <div style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: "60px", background: "linear-gradient(to left, #181818, transparent)", zIndex: 2, pointerEvents: "none" }} />}
         <div ref={scrollRef} style={{ display: "flex", gap: "14px", overflowX: "auto", overflowY: "hidden", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch", paddingBottom: "8px", scrollSnapType: "x proximity" }}>
           {category.videos.map((video, i) => (<div key={i} style={{ scrollSnapAlign: "start" }}><VideoCard video={video} accent={category.accent} index={i} onClick={onVideoClick} /></div>))}
           <div style={{ flex: "0 0 1px" }} />
@@ -225,7 +225,7 @@ function TimelineItem({ item, index }) {
       <div style={{
         position: "absolute", left: "-37px", top: "6px",
         width: "12px", height: "12px", borderRadius: "50%",
-        background: "#0a0a0a",
+        background: "#181818",
         border: `2px solid ${item.accent}`,
         boxShadow: visible ? `0 0 12px ${item.accent}40` : "none",
         transition: "box-shadow 0.6s ease",
@@ -368,17 +368,17 @@ export default function Portfolio() {
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setActiveSection(id); };
 
   return (
-    <div style={{ background: "#0a0a0a", color: "#fff", minHeight: "100vh", fontFamily: "'IBM Plex Sans', sans-serif", overflowX: "hidden", position: "relative" }}>
+    <div style={{ background: "#181818", color: "#fff", minHeight: "100vh", fontFamily: "'IBM Plex Sans', sans-serif", overflowX: "hidden", position: "relative" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.92); } }
         @keyframes drift { 0% { transform: translate(0,0) rotate(0deg); } 25% { transform: translate(15px,-20px) rotate(0.5deg); } 50% { transform: translate(-10px,10px) rotate(-0.5deg); } 75% { transform: translate(20px,5px) rotate(0.3deg); } 100% { transform: translate(0,0) rotate(0deg); } }
         @keyframes lineGrow { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
-        ::selection { background: #E8FF47; color: #0a0a0a; }
+        ::selection { background: #E8FF47; color: #181818; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-track { background: #181818; }
         ::-webkit-scrollbar-thumb { background: rgba(232,255,71,0.3); border-radius: 4px; }
 
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
@@ -401,7 +401,7 @@ export default function Portfolio() {
       <div style={{ position: "fixed", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(232,255,71,0.035) 0%, transparent 65%)", left: mousePos.x - 250, top: mousePos.y - 250, pointerEvents: "none", zIndex: 998, transition: "left 0.4s ease-out, top 0.4s ease-out" }} />
 
       {/* NAV */}
-      <nav className="nav-pad" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", background: "linear-gradient(to bottom, rgba(10,10,10,0.92) 60%, transparent)", backdropFilter: "blur(12px)", transform: loaded ? "translateY(0)" : "translateY(-100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
+      <nav className="nav-pad" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", background: "linear-gradient(to bottom, rgba(24,24,24,0.92) 60%, transparent)", backdropFilter: "blur(12px)", transform: loaded ? "translateY(0)" : "translateY(-100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
         <div style={{ fontFamily: "'Syne', sans-serif", fontSize: "18px", fontWeight: 700, letterSpacing: "0.5px", cursor: "pointer", color: "#fff" }} onClick={() => scrollTo("home")}>ryan<span style={{ color: "#E8FF47" }}>.</span></div>
         <div className="nav-links" style={{ display: "flex", gap: "36px", alignItems: "center" }}>
           {["work", "about", "contact"].map((s) => (
@@ -438,7 +438,7 @@ export default function Portfolio() {
             </p>
           </div>
           <div style={{ marginTop: "40px", display: "flex", gap: "16px", alignItems: "center", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease 1.1s" }}>
-            <button onClick={() => scrollTo("work")} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "12px", fontWeight: 500, letterSpacing: "1px", textTransform: "uppercase", padding: "14px 32px", borderRadius: "100px", border: "none", background: "#E8FF47", color: "#0a0a0a", cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
+            <button onClick={() => scrollTo("work")} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "12px", fontWeight: 500, letterSpacing: "1px", textTransform: "uppercase", padding: "14px 32px", borderRadius: "100px", border: "none", background: "#E8FF47", color: "#181818", cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
               onMouseEnter={(e) => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 8px 30px rgba(232,255,71,0.2)"; }}
               onMouseLeave={(e) => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "none"; }}
             >View Work</button>
@@ -501,7 +501,7 @@ export default function Portfolio() {
                 <div className="headshot-wrap" style={{ position: "relative", borderRadius: "20px", overflow: "hidden" }}>
                   <img src={HEADSHOT} alt="Ryan Gonzaga" style={{ width: "100%", display: "block", borderRadius: "20px" }} />
                   <div style={{ position: "absolute", inset: 0, borderRadius: "20px", border: "1px solid rgba(255,255,255,0.08)" }} />
-                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%", background: "linear-gradient(to top, rgba(10,10,10,0.4), transparent)", borderRadius: "0 0 20px 20px" }} />
+                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%", background: "linear-gradient(to top, rgba(24,24,24,0.4), transparent)", borderRadius: "0 0 20px 20px" }} />
                 </div>
               </RevealBlock>
             </div>
