@@ -426,7 +426,7 @@ export default function Portfolio() {
           <div style={{ overflow: "hidden", marginBottom: "8px" }}>
             <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "12px", fontWeight: 400, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", display: "flex", alignItems: "center", gap: "12px", transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#E8FF47", display: "inline-block", animation: "breathe 3s ease infinite" }} />
-              Creator · Editor · Storyteller · Marketer · Strategist
+              Creator · Video Editor · Marketer · Producer · Storyteller · Strategist
             </div>
           </div>
           <div style={{ overflow: "hidden" }}><h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(56px, 11vw, 130px)", fontWeight: 800, lineHeight: 0.92, letterSpacing: "-2px", color: "#fff", transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 1s cubic-bezier(0.22,1,0.36,1) 0.4s" }}>Ryan</h1></div>
@@ -434,7 +434,7 @@ export default function Portfolio() {
           <div style={{ maxWidth: "880px" }}>
           <div style={{ overflow: "hidden", marginTop: "32px", maxWidth: "440px" }}>
             <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "15px", lineHeight: 1.75, color: "rgba(255,255,255,0.4)", fontWeight: 300, transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.8s" }}>
-              Full-stack creative video editor based in Los Angeles. Driving engagement & revenue @ Modern Gents
+              Full-stack creative based in Los Angeles
             </p>
           </div>
           <div style={{ marginTop: "40px", display: "flex", gap: "16px", alignItems: "center", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease 1.1s" }}>
