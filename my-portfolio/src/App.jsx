@@ -85,6 +85,19 @@ const CATEGORIES = [
       },
     ],
   },
+  {
+    name: "Motion Graphics",
+    accent: "#FF47B5",
+    videos: [
+      {
+        title: "Apple UI 2D Design MG Value Props",
+        vimeoId: "1175553459",
+        vimeoHash: "10377d9e31",
+        thumbnail: "",
+        duration: "",
+      },
+    ],
+  },
 ];
 
 const CONTACTS = [
