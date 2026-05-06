@@ -148,7 +148,7 @@ function VideoCard({ video, accent, index, onClick }) {
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       onClick={() => { if (hasVideo && onClick) onClick(video); }}
       style={{
-        flex: "0 0 auto", width: "180px", height: "320px", borderRadius: "16px",
+        width: "100%", aspectRatio: "9 / 16", borderRadius: "16px",
         overflow: "hidden", cursor: hasVideo ? "pointer" : "default", position: "relative", background: "#1e1e1e",
         border: `1px solid ${hovered ? `${accent}60` : "rgba(255,255,255,0.04)"}`,
         transition: "all 0.45s cubic-bezier(0.22,1,0.36,1)",
@@ -182,40 +182,56 @@ function VideoCard({ video, accent, index, onClick }) {
 
 function CategoryCarousel({ category, categoryIndex, onVideoClick }) {
   const [ref, visible] = useInView(0.05);
-  const scrollRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const checkScroll = () => { const el = scrollRef.current; if (!el) return; setCanScrollLeft(el.scrollLeft > 4); setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4); };
-  useEffect(() => { const el = scrollRef.current; if (!el) return; checkScroll(); el.addEventListener("scroll", checkScroll, { passive: true }); return () => el.removeEventListener("scroll", checkScroll); }, []);
-  const scroll = (dir) => { const el = scrollRef.current; if (!el) return; el.scrollBy({ left: dir * 380, behavior: "smooth" }); };
-
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef(null);
+  const videos = category.videos;
+  const canPrev = currentIndex > 0;
+  const canNext = currentIndex < videos.length - 1;
+  const prev = () => canPrev && setCurrentIndex(i => i - 1);
+  const next = () => canNext && setCurrentIndex(i => i + 1);
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = touchStartX.current - e.changedTouches[0].clientX;
+    if (dx > 40) next();
+    else if (dx < -40) prev();
+    touchStartX.current = null;
+  };
   return (
-    <div ref={ref} style={{ marginBottom: "56px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${categoryIndex * 0.1}s` }}>
+    <div ref={ref} style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${categoryIndex * 0.1}s` }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px", paddingRight: "8px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
           <div style={{ width: "3px", height: "24px", borderRadius: "2px", background: category.accent }} />
           <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: "22px", fontWeight: 700, color: "#fff", letterSpacing: "0.3px" }}>{category.name}</h3>
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "rgba(255,255,255,0.25)", fontWeight: 400 }}>{category.videos.length} videos</span>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "rgba(255,255,255,0.25)", fontWeight: 400 }}>{videos.length} videos</span>
         </div>
         <div style={{ display: "flex", gap: "6px" }}>
           {[-1, 1].map(dir => {
-            const canScroll = dir === -1 ? canScrollLeft : canScrollRight;
+            const canScroll = dir === -1 ? canPrev : canNext;
             return (
-              <button key={dir} onClick={() => scroll(dir)} style={{ width: "36px", height: "36px", borderRadius: "10px", border: `1px solid ${canScroll ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}`, background: canScroll ? "rgba(255,255,255,0.04)" : "transparent", color: canScroll ? "#fff" : "rgba(255,255,255,0.15)", cursor: canScroll ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s ease" }}>
+              <button key={dir} onClick={() => dir === -1 ? prev() : next()} style={{ width: "36px", height: "36px", borderRadius: "10px", border: `1px solid ${canScroll ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}`, background: canScroll ? "rgba(255,255,255,0.04)" : "transparent", color: canScroll ? "#fff" : "rgba(255,255,255,0.15)", cursor: canScroll ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s ease" }}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d={dir === -1 ? "M9 3L5 7L9 11" : "M5 3L9 7L5 11"} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             );
           })}
         </div>
       </div>
-      <div style={{ position: "relative" }}>
-        {canScrollLeft && <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "60px", background: "linear-gradient(to right, #181818, transparent)", zIndex: 2, pointerEvents: "none" }} />}
-        {canScrollRight && <div style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: "60px", background: "linear-gradient(to left, #181818, transparent)", zIndex: 2, pointerEvents: "none" }} />}
-        <div ref={scrollRef} style={{ display: "flex", gap: "14px", overflowX: "auto", overflowY: "hidden", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch", paddingBottom: "8px", scrollSnapType: "x proximity" }}>
-          {category.videos.map((video, i) => (<div key={i} style={{ scrollSnapAlign: "start" }}><VideoCard video={video} accent={category.accent} index={i} onClick={onVideoClick} /></div>))}
-          <div style={{ flex: "0 0 1px" }} />
+      <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{ overflow: "hidden", borderRadius: "16px" }}>
+        <div style={{ display: "flex", transform: `translateX(${-currentIndex * 100}%)`, transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1)" }}>
+          {videos.map((video, i) => (
+            <div key={i} style={{ flex: "0 0 100%", minWidth: "100%" }}>
+              <VideoCard video={video} accent={category.accent} index={i} onClick={onVideoClick} />
+            </div>
+          ))}
         </div>
       </div>
+      {videos.length > 1 && (
+        <div style={{ display: "flex", justifyContent: "center", gap: "6px", marginTop: "14px" }}>
+          {videos.map((_, i) => (
+            <div key={i} onClick={() => setCurrentIndex(i)} style={{ width: i === currentIndex ? "20px" : "6px", height: "6px", borderRadius: "3px", background: i === currentIndex ? category.accent : "rgba(255,255,255,0.2)", cursor: "pointer", transition: "all 0.3s ease" }} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -405,6 +421,7 @@ export default function Portfolio() {
         ::-webkit-scrollbar-track { background: #181818; }
         ::-webkit-scrollbar-thumb { background: rgba(232,255,71,0.3); border-radius: 4px; }
 
+        .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
         .section-pad { padding: 120px 48px; }
         .nav-pad { padding: 24px 48px; }
@@ -412,6 +429,7 @@ export default function Portfolio() {
         .headshot-wrap { width: 280px; }
 
         @media (max-width: 768px) {
+          .categories-grid { grid-template-columns: 1fr !important; }
           .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .section-pad { padding: 80px 20px !important; }
           .nav-pad { padding: 16px 20px !important; }
@@ -503,7 +521,9 @@ export default function Portfolio() {
               Selected<br /><span style={{ color: "rgba(255,255,255,0.2)" }}>Work</span>
             </h2>
           </RevealBlock>
-          {CATEGORIES.map((cat, i) => (<CategoryCarousel key={cat.name} category={cat} categoryIndex={i} onVideoClick={(video) => setActiveVideo(video)} />))}
+          <div className="categories-grid">
+            {CATEGORIES.map((cat, i) => (<CategoryCarousel key={cat.name} category={cat} categoryIndex={i} onVideoClick={(video) => setActiveVideo(video)} />))}
+          </div>
         </div>
       </section>
 
