@@ -199,31 +199,27 @@ function CategoryCarousel({ category, categoryIndex, onVideoClick }) {
   };
   return (
     <div ref={ref} style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${categoryIndex * 0.1}s` }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px", paddingRight: "8px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-          <div style={{ width: "3px", height: "24px", borderRadius: "2px", background: category.accent }} />
-          <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: "22px", fontWeight: 700, color: "#fff", letterSpacing: "0.3px" }}>{category.name}</h3>
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "rgba(255,255,255,0.25)", fontWeight: 400 }}>{videos.length} videos</span>
-        </div>
-        <div style={{ display: "flex", gap: "6px" }}>
-          {[-1, 1].map(dir => {
-            const canScroll = dir === -1 ? canPrev : canNext;
-            return (
-              <button key={dir} onClick={() => dir === -1 ? prev() : next()} style={{ width: "36px", height: "36px", borderRadius: "10px", border: `1px solid ${canScroll ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}`, background: canScroll ? "rgba(255,255,255,0.04)" : "transparent", color: canScroll ? "#fff" : "rgba(255,255,255,0.15)", cursor: canScroll ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s ease" }}>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d={dir === -1 ? "M9 3L5 7L9 11" : "M5 3L9 7L5 11"} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </button>
-            );
-          })}
-        </div>
+      <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "20px" }}>
+        <div style={{ width: "3px", height: "24px", borderRadius: "2px", background: category.accent }} />
+        <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: "22px", fontWeight: 700, color: "#fff", letterSpacing: "0.3px" }}>{category.name}</h3>
+        <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "rgba(255,255,255,0.25)", fontWeight: 400 }}>{videos.length} videos</span>
       </div>
-      <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{ overflow: "hidden", borderRadius: "16px" }}>
-        <div style={{ display: "flex", transform: `translateX(${-currentIndex * 100}%)`, transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1)" }}>
-          {videos.map((video, i) => (
-            <div key={i} style={{ flex: "0 0 100%", minWidth: "100%" }}>
-              <VideoCard video={video} accent={category.accent} index={i} onClick={onVideoClick} />
-            </div>
-          ))}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <button onClick={prev} style={{ flexShrink: 0, width: "32px", height: "32px", borderRadius: "50%", border: `1px solid ${canPrev ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.04)"}`, background: canPrev ? "rgba(20,20,20,0.85)" : "transparent", color: canPrev ? "#fff" : "rgba(255,255,255,0.12)", cursor: canPrev ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s ease" }}>
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 3L5 7L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+        <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{ overflow: "hidden", borderRadius: "16px", flex: 1 }}>
+          <div style={{ display: "flex", transform: `translateX(${-currentIndex * 100}%)`, transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1)" }}>
+            {videos.map((video, i) => (
+              <div key={i} style={{ flex: "0 0 100%", minWidth: "100%" }}>
+                <VideoCard video={video} accent={category.accent} index={i} onClick={onVideoClick} />
+              </div>
+            ))}
+          </div>
         </div>
+        <button onClick={next} style={{ flexShrink: 0, width: "32px", height: "32px", borderRadius: "50%", border: `1px solid ${canNext ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.04)"}`, background: canNext ? "rgba(20,20,20,0.85)" : "transparent", color: canNext ? "#fff" : "rgba(255,255,255,0.12)", cursor: canNext ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s ease" }}>
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M5 3L9 7L5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
       </div>
       {videos.length > 1 && (
         <div style={{ display: "flex", justifyContent: "center", gap: "6px", marginTop: "14px" }}>
