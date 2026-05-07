@@ -98,6 +98,13 @@ const CATEGORIES = [
         duration: "",
         thumbnailImg: appleUIMG,
       },
+      {
+        title: "Captions for Organic Social",
+        vimeoId: "1190220650",
+        vimeoHash: "f676b18d10",
+        thumbnail: "",
+        duration: "",
+      },
     ],
   },
 ];
