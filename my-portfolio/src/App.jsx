@@ -535,10 +535,10 @@ export default function Portfolio() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="section-pad">
+      <section id="about" className="section-pad" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "80px" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           {/* Career Timeline */}
-          <div style={{ marginTop: "100px" }}>
+          <div>
             <RevealBlock>
               <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "3px", textTransform: "uppercase", color: "#E8FF47", marginBottom: "16px", opacity: 0.8 }}>Experience</div>
             </RevealBlock>
