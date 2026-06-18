@@ -537,39 +537,18 @@ export default function Portfolio() {
       {/* ABOUT */}
       <section id="about" className="section-pad">
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div className="about-grid">
-            <div>
+          <div>
               <RevealBlock>
                 <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "3px", textTransform: "uppercase", color: "#E8FF47", marginBottom: "20px", opacity: 0.8 }}>About</div>
               </RevealBlock>
-              <RevealBlock delay={0.1}>
-                <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.5px" }}>
-                  The Story<span style={{ color: "#E8FF47" }}>.</span>
-                </h2>
-              </RevealBlock>
               {/* Headshot */}
-              <RevealBlock delay={0.25} style={{ marginTop: "36px" }}>
+              <RevealBlock delay={0.15} style={{ marginTop: "36px" }}>
                 <div className="headshot-wrap" style={{ position: "relative", borderRadius: "20px", overflow: "hidden" }}>
                   <img src={HEADSHOT} alt="Ryan Gonzaga" style={{ width: "100%", display: "block", borderRadius: "20px" }} />
                   <div style={{ position: "absolute", inset: 0, borderRadius: "20px", border: "1px solid rgba(255,255,255,0.08)" }} />
                   <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%", background: "linear-gradient(to top, rgba(24,24,24,0.4), transparent)", borderRadius: "0 0 20px 20px" }} />
                 </div>
               </RevealBlock>
-            </div>
-            <div>
-              <RevealBlock delay={0.05}>
-                <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "14.5px", lineHeight: 1.85, color: "rgba(255,255,255,0.45)", fontWeight: 300, marginBottom: "22px" }}>
-                  Full Stack Creative based in Los Angeles with a sharp eye for visual storytelling. At my core I'm an artist who thinks in pacing, works across AI-integrated production pipelines, and executes everything from script to final cut. A quick learner who adapts fast to any environment.
-                </p>
-              </RevealBlock>
-              <RevealBlock delay={0.2}>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "12px" }}>
-                  {SKILLS.map((skill, i) => (
-                    <span key={i} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", padding: "8px 18px", borderRadius: "100px", border: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.4)" }}>{skill}</span>
-                  ))}
-                </div>
-              </RevealBlock>
-            </div>
           </div>
 
           {/* Career Timeline */}
