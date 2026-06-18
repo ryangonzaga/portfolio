@@ -559,7 +559,7 @@ export default function Portfolio() {
             <div>
               <RevealBlock delay={0.05}>
                 <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "14.5px", lineHeight: 1.85, color: "rgba(255,255,255,0.45)", fontWeight: 300, marginBottom: "22px" }}>
-                  Full-stack creative video editor with a track record of producing performance-driven paid media, viral organic social content, and brand campaigns. Skilled in end-to-end video production, motion design, and emerging AI tools; Ryan is scrappy, relentlessly improving, and deeply driven to grow.
+                  Full Stack Creative based in Los Angeles with a sharp eye for visual storytelling. At my core I'm an artist who thinks in pacing, works across AI-integrated production pipelines, and executes everything from script to final cut. A quick learner who adapts fast to any environment.
                 </p>
               </RevealBlock>
               <RevealBlock delay={0.2}>
