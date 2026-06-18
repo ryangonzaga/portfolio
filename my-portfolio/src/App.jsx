@@ -483,7 +483,7 @@ export default function Portfolio() {
           <div style={{ maxWidth: "880px" }}>
           <div style={{ overflow: "hidden", marginTop: "32px", maxWidth: "440px" }}>
             <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "15px", lineHeight: 1.75, color: "rgba(255,255,255,0.4)", fontWeight: 300, transform: loaded ? "translateY(0)" : "translateY(100%)", transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.8s" }}>
-            Full Stack Creative based in Los Angeles with a sharp eye for what stops the scroll. I think in hooks, work in metrics, and execute across organic, paid, and AI-integrated production.
+            Full Stack Creative based in Los Angeles with a sharp eye for visual storytelling. At my core I'm an artist who thinks in pacing, works across AI-integrated production pipelines, and executes everything from script to final cut. A quick learner who adapts fast to any environment.
             </p>
           </div>
           <div style={{ marginTop: "40px", display: "flex", gap: "16px", alignItems: "center", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease 1.1s" }}>
@@ -537,20 +537,6 @@ export default function Portfolio() {
       {/* ABOUT */}
       <section id="about" className="section-pad">
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div>
-              <RevealBlock>
-                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "3px", textTransform: "uppercase", color: "#E8FF47", marginBottom: "20px", opacity: 0.8 }}>About</div>
-              </RevealBlock>
-              {/* Headshot */}
-              <RevealBlock delay={0.15} style={{ marginTop: "36px" }}>
-                <div className="headshot-wrap" style={{ position: "relative", borderRadius: "20px", overflow: "hidden" }}>
-                  <img src={HEADSHOT} alt="Ryan Gonzaga" style={{ width: "100%", display: "block", borderRadius: "20px" }} />
-                  <div style={{ position: "absolute", inset: 0, borderRadius: "20px", border: "1px solid rgba(255,255,255,0.08)" }} />
-                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%", background: "linear-gradient(to top, rgba(24,24,24,0.4), transparent)", borderRadius: "0 0 20px 20px" }} />
-                </div>
-              </RevealBlock>
-          </div>
-
           {/* Career Timeline */}
           <div style={{ marginTop: "100px" }}>
             <RevealBlock>
